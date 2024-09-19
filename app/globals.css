@@ -6,8 +6,8 @@
   --background: hsl(13, 31%, 94%);
   --foreground: hsl(12, 20%, 44%);
   --secondaryBackground: hsl(20, 50%, 98%);
-  --border: hsl(14, 25%, 72%);
   --secondaryForeground: hsl(7, 20%, 60%);
+  --border: hsl(14, 25%, 72%);
   --title: hsl(14, 65%, 9%);
   --price: hsl(14, 86%, 42%);
   --green: hsl(159, 69%, 38%);
@@ -21,6 +21,17 @@ body {
 h1,
 h2 {
   color: var(--title);
+}
+
+svg:hover path {
+  fill: var(--price);
+}
+
+@layer base {
+  img {
+    width: auto;
+    height: auto;
+  }
 }
 
 @layer utilities {
