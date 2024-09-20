@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect } from "react";
 
 export const OrderSummary = ({
   items,
@@ -9,7 +10,17 @@ export const OrderSummary = ({
 }) => {
   const total = items.reduce((sum, item) => sum + item.price * item.count, 0);
 
-  document.body.style.overflow = orderConfirmed ? "hidden" : "auto";
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = orderConfirmed ? "hidden" : "auto";
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        document.body.style.overflow = "auto";
+      }
+    };
+  }, [orderConfirmed]);
 
   return (
     <div>
