@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Card = ({
   image,
@@ -8,34 +8,50 @@ export const Card = ({
   price,
   addToCart,
   removeFromCart,
+  resetItem,
 }) => {
   const [items, setItems] = useState(1);
-  const [showSecondButton, setShowSecondButton] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
   const handleCartChange = (value) => {
     if (items + value > 0) {
       setItems(items + value);
     }
     if (items === 1 && value < 1) {
-      setShowSecondButton(false);
+      setShowButton(false);
     }
   };
+
+  useEffect(() => {
+    if (resetItem) {
+      resetItem(() => {
+        setItems(1);
+        setShowButton(false);
+      }, name);
+    }
+  }, [resetItem, name]);
 
   return (
     <div>
       <div className="relative">
-        <Image
-          src={image.desktop}
-          alt={`Image of ${name}`}
-          width={250}
-          height={250}
-          className="overflow-hidden rounded-xl shadow-md"
-        />
+        <picture>
+          <source media="(max-width: 1024px)" srcSet={image.mobile} />
+          <source media="(min-width: 1280px)" srcset={image.tablet} />
+          <Image
+            src={image.desktop}
+            alt={`Image of ${name}`}
+            width={250}
+            height={250}
+            className="overflow-hidden rounded-xl shadow-md"
+          />
+        </picture>
+
         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
-          {!showSecondButton && (
+          {!showButton ? (
             <button
               className="flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border bg-secondaryBackground px-11 py-3 font-semibold text-title shadow-md transition hover:border-price hover:text-price"
               onClick={() => {
-                setShowSecondButton(true), addToCart({ name, price });
+                setShowButton(true), addToCart({ name, price });
               }}
             >
               <Image
@@ -46,8 +62,7 @@ export const Card = ({
               />
               Add to Cart
             </button>
-          )}
-          {showSecondButton && (
+          ) : (
             <button className="flex items-center justify-center gap-12 whitespace-nowrap rounded-full bg-price px-4 py-3 font-semibold text-secondaryBackground shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

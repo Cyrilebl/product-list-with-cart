@@ -1,10 +1,15 @@
 import Image from "next/image";
 
-export const Cart = ({ items, deleteItem }) => {
+export const Cart = ({ items, deleteItem, resetItem, setOrderConfirmed }) => {
   const total = items.reduce((sum, item) => sum + item.price * item.count, 0);
 
+  const handleDelete = (name) => {
+    deleteItem(name);
+    resetItem(() => name);
+  };
+
   return (
-    <div className="w-full rounded-xl bg-secondaryBackground p-8 lg:min-w-[400px]">
+    <div className="rounded-xl bg-secondaryBackground p-8">
       <h2 className="mb-7 text-2xl font-bold text-price">
         Your Cart (
         <span>{items.reduce((total, item) => total + item.count, 0)}</span>)
@@ -27,11 +32,11 @@ export const Cart = ({ items, deleteItem }) => {
           {items.map((item, index) => (
             <div
               key={index}
-              className="mt-4 flex items-center justify-between border-b"
+              className="flex items-center justify-between border-b py-4"
             >
               <div>
                 <h3 className="mb-2 font-semibold text-title">{item.name}</h3>
-                <div className="mb-4 flex">
+                <div className="flex">
                   <p className="mr-2 font-bold text-price">{item.count}x</p>
                   <p>${item.price.toFixed(2)}</p>
                   <p className="ml-7 font-bold">
@@ -45,10 +50,8 @@ export const Cart = ({ items, deleteItem }) => {
                   width="22"
                   height="22"
                   viewBox="0 0 10 10"
-                  className="mb-4 cursor-pointer rounded-full border border-border p-1 transition hover:border-price"
-                  onClick={() => {
-                    deleteItem(item.name);
-                  }}
+                  className="cursor-pointer rounded-full border border-border p-1 transition hover:border-price"
+                  onClick={() => handleDelete(item.name)}
                 >
                   <path
                     fill="#CAAFA7"
@@ -58,7 +61,7 @@ export const Cart = ({ items, deleteItem }) => {
               </div>
             </div>
           ))}
-          <p className="my-6 flex items-center justify-between">
+          <p className="my-6 flex items-center justify-between text-title">
             Order Total
             <span className="text-2xl font-bold text-title">
               ${total.toFixed(2)}
@@ -78,7 +81,9 @@ export const Cart = ({ items, deleteItem }) => {
           </div>
           <button
             className="w-full rounded-full bg-price py-3 text-center font-semibold tracking-wider text-secondaryBackground transition hover:bg-orange-800"
-            onClick={() => {}}
+            onClick={() => {
+              setOrderConfirmed(true);
+            }}
           >
             Confirm Order
           </button>

@@ -2,9 +2,11 @@
 import { useState } from "react";
 import { Card } from "./Card";
 import { Cart } from "./Cart";
+import { OrderSummary } from "./OrderSummary";
 
 export const ClientComponent = ({ data }) => {
   const [cart, updateCart] = useState([]);
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   const addToCart = (item) => {
     updateCart((prevItems) => {
@@ -45,9 +47,20 @@ export const ClientComponent = ({ data }) => {
   const deleteItem = (name) => {
     updateCart((prevItems) => prevItems.filter((item) => item.name !== name));
   };
+  const resetItem = (resetFn, name) => {
+    const itemExists = cart.find((item) => item.name === name);
+    if (!itemExists) {
+      resetFn();
+    }
+  };
+
+  const resetEverything = () => {
+    updateCart([]);
+    setOrderConfirmed(false);
+  };
 
   return (
-    <div className="m-8 lg:m-20">
+    <div className="m-5 lg:mx-40 lg:my-20">
       <main className="font-mainFont">
         <div className="flex justify-center gap-11 max-lg:flex-col max-lg:items-center">
           <div>
@@ -59,13 +72,29 @@ export const ClientComponent = ({ data }) => {
                   {...card}
                   addToCart={addToCart}
                   removeFromCart={removeFromCart}
+                  resetItem={resetItem}
                 />
               ))}
             </div>
           </div>
-          <div>
-            <Cart items={cart} deleteItem={deleteItem} />
+          <div className="xl w-full lg:max-w-[350px] xl:max-w-[550px]">
+            <Cart
+              items={cart}
+              data={data}
+              deleteItem={deleteItem}
+              resetItem={resetItem}
+              setOrderConfirmed={setOrderConfirmed}
+            />
           </div>
+        </div>
+        <div>
+          <OrderSummary
+            items={cart}
+            data={data}
+            orderConfirmed={orderConfirmed}
+            setOrderConfirmed={setOrderConfirmed}
+            resetEverything={resetEverything} 
+          />
         </div>
       </main>
     </div>
