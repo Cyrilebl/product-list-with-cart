@@ -19,11 +19,11 @@ Users are able to:
 
 ## Built with
 
-- [React](https://reactjs.org/) - JS library
-- [Tailwind](https://tailwindcss.com/) - Tailwind CSS
-- [Next.js](https://nextjs.org/) - React framework
+- JS library - [React](https://reactjs.org/)
+- Tailwind CSS - [Tailwind](https://tailwindcss.com/)
+- React framework - [Next.js](https://nextjs.org/)
 
 ## Author
 
-- Website - [Cyril](https://portfolio-cyrileblanc.netlify.app/)
+- Website - [Cyril Leblanc](https://portfolio-cyrileblanc.netlify.app/)
 - Frontend Mentor - [@Cyrilebl](https://www.frontendmentor.io/profile/Cyrilebl)
