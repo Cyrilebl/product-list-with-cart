@@ -45,10 +45,11 @@ export const ClientComponent = ({ data }) => {
   };
 
   const deleteItem = (name) => {
-    updateCart((prevItems) => prevItems.filter((item) => item.name !== name));
+    updateCart((prevItems) => prevItems.filter((i) => i.name !== name));
   };
+
   const resetItem = (resetFn, name) => {
-    const itemExists = cart.find((item) => item.name === name);
+    const itemExists = cart.find((i) => i.name === name);
     if (!itemExists) {
       resetFn();
     }
@@ -93,7 +94,7 @@ export const ClientComponent = ({ data }) => {
             data={data}
             orderConfirmed={orderConfirmed}
             setOrderConfirmed={setOrderConfirmed}
-            resetEverything={resetEverything} 
+            resetEverything={resetEverything}
           />
         </div>
       </main>
