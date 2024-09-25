@@ -21,7 +21,7 @@ Users are able to:
 
 - JS library - [React](https://reactjs.org/)
 - Tailwind CSS - [Tailwind](https://tailwindcss.com/)
-- React framework - [Next.js](https://nextjs.org/)
+- Deployment Tool - [Next.js](https://nextjs.org/)
 
 ## Author
 
