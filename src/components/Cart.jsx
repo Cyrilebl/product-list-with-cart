@@ -9,8 +9,8 @@ export const Cart = ({ items, deleteItem, resetItem, setOrderConfirmed }) => {
   };
 
   return (
-    <div className="rounded-xl bg-secondaryBackground p-8">
-      <h2 className="mb-7 text-2xl font-bold text-price">
+    <div className="bg-card rounded-xl p-8">
+      <h2 className="text-secondary mb-7 text-2xl font-bold">
         Your Cart (
         <span>{items.reduce((total, item) => total + item.count, 0)}</span>)
       </h2>
@@ -23,7 +23,7 @@ export const Cart = ({ items, deleteItem, resetItem, setOrderConfirmed }) => {
             height={150}
             className="m-auto py-8"
           />
-          <p className="text-secondaryForeground: mx-10 text-center font-semibold">
+          <p className="text-primary mx-10 text-center font-semibold">
             Your added items will appear here
           </p>
         </>
@@ -35,9 +35,11 @@ export const Cart = ({ items, deleteItem, resetItem, setOrderConfirmed }) => {
               className="flex items-center justify-between border-b py-4"
             >
               <div>
-                <h3 className="mb-2 font-semibold text-title">{item.name}</h3>
+                <h3 className="mb-2 font-semibold text-foreground">
+                  {item.name}
+                </h3>
                 <div className="flex">
-                  <p className="mr-2 font-bold text-price">{item.count}x</p>
+                  <p className="text-secondary mr-2 font-bold">{item.count}x</p>
                   <p>${item.price.toFixed(2)}</p>
                   <p className="ml-7 font-bold">
                     ${(item.count * item.price).toFixed(2)}
@@ -50,18 +52,18 @@ export const Cart = ({ items, deleteItem, resetItem, setOrderConfirmed }) => {
                   width="22"
                   height="22"
                   viewBox="0 0 10 10"
-                  className="cursor-pointer rounded-full border border-border p-1 transition hover:border-price"
+                  className="hover:border-ring border-primary cursor-pointer rounded-full border p-1 transition"
                   onClick={() => handleDelete(item.name)}
                 >
                   <path
-                    fill="#CAAFA7"
+                    fill="#18191a"
                     d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
                   />
                 </svg>
               </div>
             </div>
           ))}
-          <p className="my-6 flex items-center justify-between text-title">
+          <p className="my-6 flex items-center justify-between text-foreground">
             Order Total
             <span className="text-2xl font-bold text-title">
               ${total.toFixed(2)}
@@ -74,13 +76,13 @@ export const Cart = ({ items, deleteItem, resetItem, setOrderConfirmed }) => {
               width={21}
               height={20}
             />
-            <p className="font-medium text-title">
+            <p className="font-medium text-foreground">
               This is a{" "}
               <strong className="font-semibold">carbon-neutral</strong> delivery
             </p>
           </div>
           <button
-            className="w-full rounded-full bg-price py-3 text-center font-semibold tracking-wider text-secondaryBackground transition hover:bg-orange-800"
+            className="bg-secondary w-full rounded-full py-3 text-center font-semibold tracking-wider text-secondaryForeground transition hover:bg-orange-800"
             onClick={() => {
               setOrderConfirmed(true);
             }}

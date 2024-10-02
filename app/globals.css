@@ -3,28 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(13, 31%, 94%);
-  --foreground: hsl(12, 20%, 44%);
-  --secondaryBackground: hsl(20, 50%, 98%);
-  --secondaryForeground: hsl(7, 20%, 60%);
-  --border: hsl(14, 25%, 72%);
-  --title: hsl(14, 65%, 9%);
-  --price: hsl(14, 86%, 42%);
-  --green: hsl(159, 69%, 38%);
+  --background: hsl(210, 4%, 93.9%);
+  --foreground: hsl(210, 26%, 7.84%);
+
+  --card: hsl(210, 4%, 99.9%);
+  --card-foreground: hsl(210, 57%, 12.74%);
+
+  --border: hsl(15, 96%, 42%);
+
+  --primary: hsl(210, 4%, 9.8%);
+  --primary-foreground: hsl(210, 40%, 98%);
+
+  --secondary: hsl(15, 96%, 42%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+
+  --ring: hsl(15, 96%, 42%);
 }
 
 body {
-  color: var(--foreground);
+  color: var(--primary);
   background: var(--background);
 }
 
 h1,
-h2 {
-  color: var(--title);
+h2,
+h3 {
+  color: var(--foreground);
 }
 
 svg:hover path {
-  fill: var(--price);
+  fill: var(--secondary);
 }
 
 @layer base {
@@ -37,11 +45,5 @@ svg:hover path {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-}
-
-@layer base {
-  h1 {
-    @apply text-4xl font-bold lg:text-5xl;
   }
 }

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export const Card = ({
   image,
-  category,
   name,
   price,
   addToCart,
@@ -36,7 +35,6 @@ export const Card = ({
       <div className="relative">
         <picture>
           <source media="(max-width: 1024px)" srcSet={image.mobile} />
-          <source media="(min-width: 1280px)" srcset={image.tablet} />
           <Image
             src={image.desktop}
             alt={`Image of ${name}`}
@@ -49,7 +47,7 @@ export const Card = ({
         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
           {!showButton ? (
             <button
-              className="flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border bg-secondaryBackground px-11 py-3 font-semibold text-title shadow-md transition hover:border-price hover:text-price"
+              className="bg-card border-primary hover:border-secondary hover:text-secondary flex items-center justify-center gap-2 whitespace-nowrap rounded-full border px-11 py-3 font-semibold text-foreground shadow-md transition"
               onClick={() => {
                 setShowButton(true), addToCart({ name, price });
               }}
@@ -63,14 +61,14 @@ export const Card = ({
               Add to Cart
             </button>
           ) : (
-            <button className="flex items-center justify-center gap-12 whitespace-nowrap rounded-full bg-price px-4 py-3 font-semibold text-secondaryBackground shadow-md">
+            <button className="bg-secondary flex items-center justify-center gap-12 whitespace-nowrap rounded-full px-4 py-3 font-semibold text-secondaryForeground shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="27"
                 height="27"
                 viewBox="0 0 10 2"
                 alt="Minus icon"
-                className="rounded-full border border-background p-2 transition hover:bg-secondaryBackground"
+                className="rounded-full border border-secondaryForeground p-2 transition hover:bg-secondaryForeground"
                 onClick={() => {
                   handleCartChange(-1), removeFromCart({ name, price });
                 }}
@@ -84,7 +82,7 @@ export const Card = ({
                 height="27"
                 viewBox="0 0 10 10"
                 alt="Plus icon"
-                className="rounded-full border border-background p-2 transition hover:bg-secondaryBackground"
+                className="rounded-full border border-secondaryForeground p-2 transition hover:bg-secondaryForeground"
                 onClick={() => {
                   handleCartChange(1), addToCart({ name, price });
                 }}
@@ -98,10 +96,9 @@ export const Card = ({
           )}
         </div>
       </div>
-      <div className="mt-10">
-        <p className="text-sm font-medium">{category}</p>
-        <h2 className="my-1 font-semibold">{name}</h2>
-        <p className="font-semibold text-price">{`$${price.toFixed(2)}`}</p>
+      <div className="mt-9">
+        <h3 className="mb-1 font-semibold">{name}</h3>
+        <p className="text-secondary font-semibold">{`$${price.toFixed(2)}`}</p>
       </div>
     </div>
   );

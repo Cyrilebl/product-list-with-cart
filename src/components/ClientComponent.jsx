@@ -1,48 +1,17 @@
 "use client";
+import { RedHat } from "@/utils/fonts";
 import { useState } from "react";
-import { Card } from "./Card";
 import { Cart } from "./Cart";
+import { Categories } from "./Categories";
+import { Header } from "./Header";
 import { OrderSummary } from "./OrderSummary";
+import { ShoppingList } from "./ShoppingList";
 
 export const ClientComponent = ({ data }) => {
+  const [category, setCategory] = useState("starter");
+
   const [cart, updateCart] = useState([]);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-
-  const addToCart = (item) => {
-    updateCart((prevItems) => {
-      const itemExists = prevItems.find((i) => i.name === item.name);
-      if (itemExists) {
-        // Si l'élément existe déjà dans le panier, augmenter la quantité
-        return prevItems.map((i) =>
-          i.name === item.name ? { ...i, count: i.count + 1 } : i,
-        );
-      } else {
-        // Sinon, ajouter un nouvel élément au panier
-        return [...prevItems, { ...item, count: 1 }];
-      }
-    });
-  };
-
-  const removeFromCart = (item) => {
-    updateCart((prevItems) => {
-      const existingItem = prevItems.find(
-        (cartItem) => cartItem.name === item.name,
-      );
-      if (existingItem) {
-        if (existingItem.count > 1) {
-          return prevItems.map((cartItem) =>
-            cartItem.name === item.name
-              ? { ...cartItem, count: cartItem.count - 1 }
-              : cartItem,
-          );
-        } else {
-          // Si la quantité tombe à 0, on retire l'article du panier
-          return prevItems.filter((cartItem) => cartItem.name !== item.name);
-        }
-      }
-      return prevItems;
-    });
-  };
 
   const deleteItem = (name) => {
     updateCart((prevItems) => prevItems.filter((i) => i.name !== name));
@@ -61,24 +30,19 @@ export const ClientComponent = ({ data }) => {
   };
 
   return (
-    <div className="m-5 lg:mx-40 lg:my-20">
-      <main className="font-mainFont">
-        <div className="flex justify-center gap-11 max-lg:flex-col max-lg:items-center">
-          <div>
-            <h1 className="mb-10">Desserts</h1>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
-              {data.map((card) => (
-                <Card
-                  key={card.name}
-                  {...card}
-                  addToCart={addToCart}
-                  removeFromCart={removeFromCart}
-                  resetItem={resetItem}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="xl w-full lg:max-w-[350px] xl:max-w-[550px]">
+    <>
+      <Header />
+      <main className={`font-mainFont ${RedHat}`}>
+        <Categories data={data} category={category} setCategory={setCategory} />
+        <div className="mt-10 flex justify-center gap-11 max-lg:flex-col max-lg:items-center 2xl:gap-24">
+          <ShoppingList
+            data={data}
+            cart={cart}
+            category={category}
+            updateCart={updateCart}
+            resetItem={resetItem}
+          />
+          <div className="xl w-full lg:max-w-[350px] xl:max-w-[500px]">
             <Cart
               items={cart}
               data={data}
@@ -88,16 +52,14 @@ export const ClientComponent = ({ data }) => {
             />
           </div>
         </div>
-        <div>
-          <OrderSummary
-            items={cart}
-            data={data}
-            orderConfirmed={orderConfirmed}
-            setOrderConfirmed={setOrderConfirmed}
-            resetEverything={resetEverything}
-          />
-        </div>
+        <OrderSummary
+          items={cart}
+          data={data}
+          orderConfirmed={orderConfirmed}
+          setOrderConfirmed={setOrderConfirmed}
+          resetEverything={resetEverything}
+        />
       </main>
-    </div>
+    </>
   );
 };
