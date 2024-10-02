@@ -34,7 +34,7 @@ export const ClientComponent = ({ data }) => {
       <Header />
       <main className={`font-mainFont ${RedHat}`}>
         <Categories data={data} category={category} setCategory={setCategory} />
-        <div className="mt-10 flex justify-center gap-11 max-lg:flex-col max-lg:items-center 2xl:gap-24">
+        <div className="mt-10 flex justify-center gap-11 max-lg:flex-col max-lg:items-center 2xl:gap-14">
           <ShoppingList
             data={data}
             cart={cart}
@@ -42,7 +42,7 @@ export const ClientComponent = ({ data }) => {
             updateCart={updateCart}
             resetItem={resetItem}
           />
-          <div className="xl w-full lg:max-w-[350px] xl:max-w-[500px]">
+          <div className="xl w-full lg:max-w-[300px] xl:max-w-[350px] 2xl:max-w-[450px]">
             <Cart
               items={cart}
               data={data}
