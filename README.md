@@ -4,12 +4,14 @@
 
 ## Welcome! 👋
 
-This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d).
+I've added new categories inspired by a fictional Italian restaurant, where users can order Starters, Main Courses, or Desserts.
 
 ## The challenge
 
 Users are able to:
 
+- Select meal categories (Starters, Main Courses, Desserts)
 - Add items to the cart and remove them
 - Increase/decrease the number of items in the cart
 - See an order confirmation modal when they click "Confirm Order"
