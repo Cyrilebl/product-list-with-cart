@@ -27,7 +27,7 @@ module.exports = {
       },
       fontFamily: {
         mainFont: "var(--font-redHat)",
-        titleFont: "var(--font-notoSerif)",
+        titleFont: "var(--font-merriweather)",
       },
     },
   },

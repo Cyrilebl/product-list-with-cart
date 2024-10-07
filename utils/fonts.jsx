@@ -1,4 +1,4 @@
-import { Noto_Serif, Red_Hat_Text } from "next/font/google";
+import { Merriweather, Red_Hat_Text } from "next/font/google";
 
 const RedHatText = Red_Hat_Text({
   subsets: ["latin"],
@@ -8,10 +8,11 @@ const RedHatText = Red_Hat_Text({
 
 export const RedHat = RedHatText.variable;
 
-const NotoSerifText = Noto_Serif({
+const MerriweatherText = Merriweather({
   subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-notoSerif",
+  weight: ["400"],
+  style: "italic",
+  variable: "--font-merriweather",
 });
 
-export const NotoSerif = NotoSerifText.variable;
+export const MerriweatherTitle = MerriweatherText.variable;

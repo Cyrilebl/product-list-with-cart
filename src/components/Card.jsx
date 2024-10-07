@@ -31,7 +31,7 @@ export const Card = ({
   }, [resetItem, name]);
 
   return (
-    <div>
+    <div className="rounded-xl bg-card shadow-md">
       <div className="relative">
         <picture>
           <source media="(max-width: 1024px)" srcSet={image.mobile} />
@@ -47,7 +47,7 @@ export const Card = ({
         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
           {!showButton ? (
             <button
-              className="bg-card border-primary hover:border-secondary hover:text-secondary flex items-center justify-center gap-2 whitespace-nowrap rounded-full border px-11 py-3 font-semibold text-foreground shadow-md transition"
+              className="flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-primary bg-card px-11 py-3 font-semibold text-foreground shadow-md transition hover:border-secondary hover:text-secondary"
               onClick={() => {
                 setShowButton(true), addToCart({ name, price });
               }}
@@ -61,7 +61,7 @@ export const Card = ({
               Add to Cart
             </button>
           ) : (
-            <button className="bg-secondary flex items-center justify-center gap-12 whitespace-nowrap rounded-full px-4 py-3 font-semibold text-secondaryForeground shadow-md">
+            <button className="flex items-center justify-center gap-12 whitespace-nowrap rounded-full bg-secondary px-4 py-3 font-semibold text-secondaryForeground shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="27"
@@ -96,9 +96,9 @@ export const Card = ({
           )}
         </div>
       </div>
-      <div className="mt-9">
+      <div className="px-5 pb-4 pt-10">
         <h3 className="mb-1 font-semibold">{name}</h3>
-        <p className="text-secondary font-semibold">{`$${price.toFixed(2)}`}</p>
+        <p className="font-semibold text-secondary">{`$${price.toFixed(2)}`}</p>
       </div>
     </div>
   );

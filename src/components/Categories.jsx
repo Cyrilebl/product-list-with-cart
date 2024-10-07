@@ -1,4 +1,4 @@
-export const Categories = ({ data, setCategory }) => {
+export const Categories = ({ data, setCategory, category }) => {
   const categories = data.reduce(
     (acc, data) =>
       acc.includes(data.category) ? acc : acc.concat(data.category),
@@ -12,7 +12,7 @@ export const Categories = ({ data, setCategory }) => {
           <button
             key={cat}
             onClick={() => setCategory(cat)}
-            className="hover:text-secondary relative capitalize transition ease-in-out"
+            className={`relative capitalize transition ease-in-out hover:text-secondary ${category === cat && "text-secondary hover:text-secondary"}`}
           >
             {cat}
           </button>
