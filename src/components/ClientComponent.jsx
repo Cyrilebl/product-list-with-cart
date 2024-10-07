@@ -34,7 +34,7 @@ export const ClientComponent = ({ data }) => {
       <Header />
       <main className={`font-mainFont ${RedHat}`}>
         <Categories data={data} category={category} setCategory={setCategory} />
-        <div className="mt-10 flex justify-center gap-11 max-lg:flex-col max-lg:items-center 2xl:gap-14">
+        <div className="mt-14 flex justify-center gap-11 max-lg:flex-col max-lg:items-center 2xl:gap-14">
           <ShoppingList
             data={data}
             cart={cart}
